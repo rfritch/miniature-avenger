@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MVC.Interfaces;
+using MVC.Repository;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -14,76 +16,16 @@ namespace MVC.Controllers
             return View();
         }
 
-        // GET: Appointment/Details/5
-        public ActionResult Details(int id)
+        // GET: Appointment/
+        public ActionResult Get(IStaff staffId, DateTime date)
         {
-            return View();
+            //TODO make this a cache 
+            IAppointmentRepository appointmentRepo = new AppointmentRepository();
+            IOrderedEnumerable<IAppointment> appointments = appointmentRepo.GetStaffAppointments(staffId, date).OrderByDescending(a => a.StartDateTime);
+
+            return View(appointments.ToList());
         }
 
-        // GET: Appointment/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
 
-        // POST: Appointment/Create
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Appointment/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: Appointment/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Appointment/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Appointment/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
     }
 }

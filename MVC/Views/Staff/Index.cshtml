@@ -1,0 +1,13 @@
+﻿@model IEnumerable<MVC.Interfaces.IStaff>
+
+@{
+    ViewBag.Title = "";
+}
+
+<h2>@ViewBag.Title</h2>
+<h3>@ViewBag.Message</h3>
+
+@using(Html.BeginForm())
+{
+    @Html.DropDownListFor(m => m.First().ID, new SelectList(Model, "ID", "LastName"), "-- Select Staff Member --")
+}
