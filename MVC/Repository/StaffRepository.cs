@@ -27,17 +27,11 @@ namespace MVC.Repository
             var proxy = new StaffServiceSoapClient();
             GetStaffResult response = proxy.GetStaff(request);
 
-
-            StaffModel s = new StaffModel();
-            s.Appointments = null;
-
-
             return response.StaffMembers.Where((member) => member.ID > 0).Select( (member) => new StaffModel
             {
                 ID = member.ID,
                 FirstName = member.FirstName,
                 LastName = member.LastName,
-                Appointments = (member.Appointments == null) ? null : member.Appointments.Cast<IAppointment>().ToList(),
                 
             }).Cast<IStaff>().ToList();
         }

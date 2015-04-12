@@ -1,13 +1,37 @@
 ﻿@model IEnumerable<MVC.Interfaces.IStaff>
 
 @{
-    ViewBag.Title = "";
+    ViewBag.Title = "Index";
 }
 
-<h2>@ViewBag.Title</h2>
-<h3>@ViewBag.Message</h3>
+@*@Html.DropDownListFor(m => m.First().ID, new SelectList(Model, "ID", "LastName"), "-- Select Staff Member --")*@
 
-@using(Html.BeginForm())
-{
-    @Html.DropDownListFor(m => m.First().ID, new SelectList(Model, "ID", "LastName"), "-- Select Staff Member --")
-}
+<table class="table">
+    <tr>
+        <th>
+            Staff Members
+        </th>
+    </tr>
+
+    @foreach (var staffMember in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(m => staffMember.LastName)
+            </td>
+            <td>
+                @* TODO this should be a post *@
+
+                @Html.ActionLink("View Schedule", 
+                                 "Get",
+                                 "Appointment",
+                                  new { staffId = staffMember.ID, 
+                              firstName = staffMember.FirstName,
+                              lastName = staffMember.LastName,
+                              date = new DateTime(2014, 01, 03) }, 
+                null) 
+            </td>
+        </tr>
+    }
+
+</table>

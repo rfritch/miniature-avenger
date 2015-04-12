@@ -20,5 +20,6 @@ namespace MVC.Controllers
             //Combine model with view and return
             return View(staffMembers.ToList());
         }
+
     }
 }

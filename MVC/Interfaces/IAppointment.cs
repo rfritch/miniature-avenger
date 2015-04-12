@@ -11,5 +11,7 @@ namespace MVC.Interfaces
         long? ID { get; set; }
         DateTime? StartDateTime { get; set; }
         DateTime? EndDateTime { get; set; }
+        string SessionType { get; set; }
+        string ClientName { get; set; }
     }
 }

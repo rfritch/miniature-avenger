@@ -13,7 +13,5 @@ namespace MVC.Interfaces
         String FirstName { get; set; }
         
         String LastName { get; set; }
-
-        List<IAppointment> Appointments { get; set; }
     }
 }

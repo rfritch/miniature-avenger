@@ -1368,6 +1368,8 @@ namespace MVC.AppointmentServiceReference {
                 }
             }
         }
+
+        public AppointmentServiceReference.SessionType Session { get; set; }
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]

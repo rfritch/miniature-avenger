@@ -16,5 +16,9 @@ namespace MVC.Models
 
         [DataType(DataType.DateTime)]
         public DateTime? EndDateTime { get; set; }
+
+        public string SessionType { get; set; }
+
+        public string ClientName { get; set; }
     }
 }
