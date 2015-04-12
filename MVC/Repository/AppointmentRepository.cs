@@ -5,15 +5,16 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using MVC.AppointmentServiceReference;
 
-//TODO: Refine
 namespace MVC.Repository
 {
     public class AppointmentRepository : IAppointmentRepository
     {
         public List<IAppointment> GetStaffAppointments(IStaff staff, DateTime appointmentDate)
         {
+            // Appointments might span midnight
+            DateTime endDate = appointmentDate.AddDays(1);    
+
             var request = new GetStaffAppointmentsRequest
             {
                 SourceCredentials = new SourceCredentials
@@ -29,9 +30,8 @@ namespace MVC.Repository
                     Password = string.Format("{0}{1}{2}", staff.FirstName.ToLower()[0], staff.LastName.ToLower()[0], staff.ID),
                     SiteIDs = new ArrayOfInt { -31100 }
                 },
-
                 StartDate = appointmentDate,
-                EndDate = appointmentDate
+                EndDate = endDate,  
             };
             var proxy = new AppointmentServiceSoapClient();
             GetStaffAppointmentsResult response = proxy.GetStaffAppointments(request);
@@ -46,6 +46,5 @@ namespace MVC.Repository
                 
             }).Cast<IAppointment>().ToList();
         }
-
     }
 }

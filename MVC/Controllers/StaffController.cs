@@ -1,4 +1,5 @@
 ﻿using MVC.Interfaces;
+using MVC.Models;
 using MVC.Repository;
 using System;
 using System.Collections.Generic;
@@ -15,10 +16,19 @@ namespace MVC.Controllers
         {
             //Get the model
             IStaffRepository staffRepo = new StaffRepository();
-            IOrderedEnumerable<IStaff> staffMembers = staffRepo.GetStaff().OrderBy(s => s.LastName);
+            //IOrderedEnumerable<IStaff> staffMembers = staffRepo.GetStaff().OrderBy(s => s.LastName);
+
+            //Convert to the view Model
+
+            StaffViewModel viewModel = new StaffViewModel()
+            {
+                StaffMemberList = staffRepo.GetStaff().OrderBy(s => s.LastName)
+            };
+
+            return View(viewModel);
 
             //Combine model with view and return
-            return View(staffMembers.ToList());
+            //return View(staffMembers.ToList());
         }
 
     }
