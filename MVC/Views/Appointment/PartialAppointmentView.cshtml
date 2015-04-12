@@ -1,0 +1,42 @@
+﻿@model IEnumerable<MVC.Interfaces.IAppointment>
+
+@{
+    ViewBag.Title = "Partial View";
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.StartDateTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EndDateTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SessionType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ClientName)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartDateTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EndDateTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SessionType)
+            </td>
+            <th>
+                @Html.DisplayFor(modelItem => item.ClientName)
+            </th>
+        </tr>
+    }
+
+</table>
+

@@ -6,27 +6,46 @@
 
 <h2></h2>
 
-@using (Html.BeginForm("Get", "Appointment", FormMethod.Post))
-{
-    <fieldset>
-        <table>
-            <tr>
-                
-                <td>
-                    @Html.DropDownListFor(
-                    m => m.SelectedStaffId,
-                    new SelectList(Model.StaffMemberList, "ID", "LastName"),
-                    "-- Select --")
-                   @Html.ValidationMessageFor(m => m.SelectedStaffId)
-               </td>
-                <td>
-                    <input type="date" value="2014-01-03" name="date">
-                </td>
-                <td>
-                    <input type="submit" value="View Schedule" />
-                </td>
-            </tr>
-        </table>
-    </fieldset>
-}
+<form id="staffPickerForm">
+    <table>
+        <tr>
+            <td>
+                <label for="selectStaff"><strong>Select a Staff Member</strong></label>
+                @Html.DropDownListFor(
+                m => m.SelectedStaffId,
+                new SelectList(Model.StaffMemberList, "ID", "LastName"),
+                "-- Select --")
+            </td>
+            <td>
+                <input type="date" value="2014-01-03" name="date">
+            </td>
+            <td>
+               <input type="button" value="Submit" onclick="postAndUpdate(this)" />
+            </td>
+        </tr>
+    </table>
+</form>
+<br />
+
+<div id="appointmentResults" />
+
+<script type="text/javascript">
+    function postAndUpdate(btnClicked) {
+        var $form = $("#staffPickerForm");
+
+        $.ajax({
+            type: "POST",
+            url: '@(Url.Action("PartialAppointmentView", "Appointment"))',
+            data: $form.serialize(),
+            error: function (xhr, status, error) {
+                //do something about the error
+            },
+            success: function (response) {
+                //do something with response
+                $("#appointmentResults").html(response);
+            }
+        });
+        return false;
+    }
+</script>
 

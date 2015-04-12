@@ -11,26 +11,51 @@ namespace MVC.Controllers
 {
     public class AppointmentController : Controller
     {
-        //GET: Appointment
-        public ActionResult Index()
-        {
-            return View();
-        }
+        private readonly IStaffRepository _staffRepo;
+        private readonly IAppointmentRepository _appointmentRepo;
 
-        //POST : by ID and Date 
+        public AppointmentController(IAppointmentRepository appointmentRepo, IStaffRepository staffRepo)
+        {
+            _appointmentRepo = appointmentRepo;
+            _staffRepo = staffRepo;
+        }
+        
+        //POST:   
         [HttpPost]
-        public ActionResult Get(StaffViewModel staff, DateTime date) 
+        public ActionResult Get (StaffViewModel staff, DateTime date) 
         {
-            long staffId = staff.SelectedStaffId;
-            //DateTime date = new DateTime(2014, 1, 3);
-
-            IStaffRepository staffRepo = new StaffRepository();
-            IEnumerable<IStaff> staffMember = staffRepo.GetStaff().Where((m => m.ID == staffId));
- 
-            IAppointmentRepository appointmentRepo = new AppointmentRepository();
-            IOrderedEnumerable<IAppointment> appointments = appointmentRepo.GetStaffAppointments( staffMember.First(),  date).OrderByDescending(a => a.StartDateTime);
-
-            return View(appointments.ToList());
+            try
+            {
+                IStaff aStaff = _staffRepo.GetStaff().Where(m => m.ID == staff.SelectedStaffId).First();
+                IOrderedEnumerable<IAppointment> appointments = _appointmentRepo.GetStaffAppointments(aStaff, date).OrderByDescending(a => a.StartDateTime);
+                return View(appointments);
+            }
+            catch( Exception e)
+            {
+                List<IAppointment> appointments = new List<IAppointment>(); 
+                return View(appointments);
+            }
+            
         }
+
+
+        //POST:   
+        [HttpPost]
+        public ActionResult PartialAppointmentView(StaffViewModel staff, DateTime date)
+        {
+            try
+            {
+                IStaff aStaff = _staffRepo.GetStaff().Where(m => m.ID == staff.SelectedStaffId).First();
+                IOrderedEnumerable<IAppointment> appointments = _appointmentRepo.GetStaffAppointments(aStaff, date).OrderByDescending(a => a.StartDateTime);
+                return PartialView(appointments);
+            }
+            catch (Exception e)
+            {
+                List<IAppointment> appointments = new List<IAppointment>();
+                return PartialView(appointments);
+            }
+
+        }
+
     }
 }
