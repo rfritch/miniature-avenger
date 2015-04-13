@@ -22,25 +22,6 @@ namespace MVC.Controllers
         
         //POST:   
         [HttpPost]
-        public ActionResult Get (StaffViewModel staff, DateTime date) 
-        {
-            try
-            {
-                IStaff aStaff = _staffRepo.GetStaff().Where(m => m.ID == staff.SelectedStaffId).First();
-                IOrderedEnumerable<IAppointment> appointments = _appointmentRepo.GetStaffAppointments(aStaff, date).OrderByDescending(a => a.StartDateTime);
-                return View(appointments);
-            }
-            catch( Exception e)
-            {
-                List<IAppointment> appointments = new List<IAppointment>(); 
-                return View(appointments);
-            }
-            
-        }
-
-
-        //POST:   
-        [HttpPost]
         public ActionResult PartialAppointmentView(StaffViewModel staff, DateTime date)
         {
             try

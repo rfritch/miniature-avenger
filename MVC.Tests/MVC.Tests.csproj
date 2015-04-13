@@ -40,6 +40,8 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.Web.Extensions" />
@@ -82,21 +84,54 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\StaffRepositoryTest.cs" />
+    <Compile Include="Controllers\AppointmentControllerTest.cs" />
+    <Compile Include="Repositories\AppointmentRepositoryTest.cs" />
+    <Compile Include="Repositories\StaffRepositoryTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />
+    <Compile Include="Service References\AppointmentServiceReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\StaffServiceReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.config" />
+    <None Include="Service References\StaffServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\StaffServiceReference\configuration.svcinfo" />
+    <None Include="Service References\StaffServiceReference\configuration91.svcinfo" />
+    <None Include="Service References\AppointmentServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\AppointmentServiceReference\configuration.svcinfo" />
+    <None Include="Service References\AppointmentServiceReference\configuration91.svcinfo" />
+    <None Include="Service References\StaffServiceReference\StaffService.wsdl" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="Service References\AppointmentServiceReference\AppointmentService.wsdl" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MVC\MVC.csproj">
       <Project>{83CF550A-D125-42BB-9FC6-504FD6C96D6A}</Project>
       <Name>MVC</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\AppointmentServiceReference\" />
+    <WCFMetadataStorage Include="Service References\StaffServiceReference\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

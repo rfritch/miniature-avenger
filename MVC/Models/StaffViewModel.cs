@@ -10,7 +10,7 @@ namespace MVC.Models
 {
     public class StaffViewModel
     {
-        public int SelectedStaffId { get; set; }
+        public long? SelectedStaffId { get; set; }
         public IOrderedEnumerable<IStaff> StaffMemberList { get; set; }
     }
 }
