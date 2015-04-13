@@ -147,6 +147,8 @@
     <Compile Include="Models\AppointmentModel.cs" />
     <Compile Include="Models\StaffViewModel.cs" />
     <Compile Include="Repository\AppointmentRepository.cs" />
+    <Compile Include="Repository\CachedAppointmentRepository.cs" />
+    <Compile Include="Repository\CachedStaffRepository.cs" />
     <Compile Include="Repository\StaffRepository.cs" />
     <Compile Include="Service References\AppointmentServiceReference\Reference.cs">
       <AutoGen>True</AutoGen>

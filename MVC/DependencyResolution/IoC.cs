@@ -17,11 +17,19 @@
 
 
 namespace MVC.DependencyResolution {
+    using MVC.Interfaces;
+    using MVC.Repository;
     using StructureMap;
-	
+
     public static class IoC {
         public static IContainer Initialize() {
-            return new Container(c => c.AddRegistry<DefaultRegistry>());
+            return new Container(c =>
+                {
+                    //c.AddRegistry<DefaultRegistry>();
+                    c.For<IAppointmentRepository>().Use<CachedAppointmentRepository>();
+                    c.For<IStaffRepository>().Use<CachedStaffRepository>();
+                });
+
         }
     }
 }

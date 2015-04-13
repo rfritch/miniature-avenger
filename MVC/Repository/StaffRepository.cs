@@ -6,13 +6,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-
-//TODO: refine this
 namespace MVC.Repository
 {
     public class StaffRepository : IStaffRepository
     {
-        public List<IStaff> GetStaff()
+        public virtual List<IStaff> GetStaff()
         {
             var request = new GetStaffRequest
             {

@@ -10,7 +10,7 @@ namespace MVC.Repository
 {
     public class AppointmentRepository : IAppointmentRepository
     {
-        public List<IAppointment> GetStaffAppointments(IStaff staff, DateTime appointmentDate)
+        public virtual List<IAppointment> GetStaffAppointments(IStaff staff, DateTime appointmentDate)
         {
             // Appointments might span midnight
             DateTime endDate = appointmentDate.AddDays(1);    

@@ -3,9 +3,7 @@
 @{
     ViewBag.Title = "Index";
 }
-
-<h2></h2>
-
+<h2/>
 <form id="staffPickerForm">
     <table>
         <tr>
@@ -26,9 +24,7 @@
     </table>
 </form>
 <br />
-
 <div id="appointmentResults" />
-
 <script type="text/javascript">
     function postAndUpdate(btnClicked) {
         var $form = $("#staffPickerForm");
@@ -41,7 +37,7 @@
                 //do something about the error
             },
             success: function (response) {
-                //do something with response
+                //Update the appointment results
                 $("#appointmentResults").html(response);
             }
         });
