@@ -13,5 +13,8 @@ namespace MVC.Interfaces
         String FirstName { get; set; }
         
         String LastName { get; set; }
+
+        String Name { get; set; }
+
     }
 }

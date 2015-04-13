@@ -3,15 +3,16 @@
 @{
     ViewBag.Title = "Index";
 }
+
 <h2/>
 <form id="staffPickerForm">
     <table>
         <tr>
             <td>
-                <label for="selectStaff"><strong>Select a Staff Member</strong></label>
+                <label for="selectStaff"><strong>Select: </strong></label>
                 @Html.DropDownListFor(
                 m => m.SelectedStaffId,
-                new SelectList(Model.StaffMemberList, "ID", "LastName"),
+                new SelectList(Model.StaffMemberList, "ID", "Name"),
                 "-- Select --")
             </td>
             <td>

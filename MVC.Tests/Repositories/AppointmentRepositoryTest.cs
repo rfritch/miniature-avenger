@@ -22,7 +22,7 @@ namespace MVC.Tests.Controllers
         }
 
         [TestMethod]
-        public void GetAppointmentsHasData()
+        public void AppointmentRepoGetsData()
         {
             var repo = new AppointmentRepository();
 

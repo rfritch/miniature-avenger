@@ -30,7 +30,7 @@ namespace MVC.Repository
                 ID = member.ID,
                 FirstName = member.FirstName,
                 LastName = member.LastName,
-                
+                Name = member.Name,
             }).Cast<IStaff>().ToList();
         }
     }

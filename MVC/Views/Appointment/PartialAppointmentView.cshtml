@@ -4,6 +4,13 @@
     ViewBag.Title = "Partial View";
 }
 
+
+@if( !Model.Any() )
+{
+    <tr><td>There are no Appointments for this day</td></tr>
+}
+else
+{
 <table class="table">
     <tr>
         <th>
@@ -38,4 +45,4 @@
         </tr>
     }
 </table>
-
+}
